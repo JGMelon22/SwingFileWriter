@@ -1,0 +1,1 @@
+Executando em uma thread!
