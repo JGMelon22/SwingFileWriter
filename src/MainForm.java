@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class MainForm {
 
@@ -83,10 +84,13 @@ public class MainForm {
 		btnWrite.setBounds(313, 231, 117, 25);
 		btnWrite.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		layeredPane.add(btnWrite);
-
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 12, 418, 142);
+		layeredPane.add(scrollPane);
+		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(12, 12, 418, 152);
-		layeredPane.add(textPane);
+		scrollPane.setViewportView(textPane);
 
 		btnWrite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
