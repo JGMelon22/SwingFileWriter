@@ -84,11 +84,11 @@ public class MainForm {
 		btnWrite.setBounds(313, 231, 117, 25);
 		btnWrite.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		layeredPane.add(btnWrite);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 12, 418, 142);
 		layeredPane.add(scrollPane);
-		
+
 		JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 
@@ -103,15 +103,22 @@ public class MainForm {
 					String caminhoAtual = Paths.get("").toAbsolutePath().toString();
 					Path path = Paths.get(caminhoAtual + "/Arquivo.txt");
 
-					try {
-						Files.write(path, texto.getBytes());
-					} catch (IOException e) {
-						JOptionPane.showMessageDialog(null, textPane, e.getMessage(), JOptionPane.ERROR_MESSAGE);
+					if (texto.isEmpty() || texto == "") {
+						JOptionPane.showMessageDialog(null, "Texto vazio!", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 
-					JOptionPane.showMessageDialog(null, "Arquivo Escrito!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+					else {
+
+						try {
+							Files.write(path, texto.getBytes());
+						} catch (IOException e) {
+							JOptionPane.showMessageDialog(null, textPane, e.getMessage(), JOptionPane.ERROR_MESSAGE);
+						}
+
+						JOptionPane.showMessageDialog(null, "Arquivo Escrito!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+					}
 				});
-				t1.start();	
+				t1.start();
 
 			}
 		});
