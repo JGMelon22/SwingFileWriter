@@ -108,13 +108,25 @@ public class MainForm {
 					}
 
 					else {
-
+						frmFileWriter.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+						textPane.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+						btnWrite.setEnabled(false);
 						try {
 							Files.write(path, texto.getBytes());
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, textPane, e.getMessage(), JOptionPane.ERROR_MESSAGE);
 						}
 
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							JOptionPane.showMessageDialog(null, textPane, e.getMessage(), JOptionPane.ERROR_MESSAGE);
+						}
+
+						
+						frmFileWriter.setCursor(new Cursor(Cursor.HAND_CURSOR));
+						textPane.setCursor(new Cursor(Cursor.HAND_CURSOR));
+						btnWrite.setEnabled(true);
 						JOptionPane.showMessageDialog(null, "Arquivo Escrito!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
 					}
 				});
